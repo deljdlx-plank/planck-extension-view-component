@@ -1,0 +1,49 @@
+.jstree-default .jstree-closed>.jstree-ocl, .jstree-default .jstree-open>.jstree-ocl {
+    background-image: none;
+}
+
+.jstree-default .jstree-closed>.jstree-ocl:before
+{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0fe";
+    font-style: normal;
+    background-color:#FFF;
+}
+
+.jstree-default .jstree-open>.jstree-ocl:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f146";
+    font-style: normal;
+    background-color:#FFF;
+}
+
+.jstree-default .jstree-icon.folder:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f07b";
+
+    font-style: normal;
+    background-color:#FFF;
+}
+
+
+.jstree-open .jstree-icon.folder:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f07c";
+    font-style: normal;
+    background-color:#FFF;
+}
+
+.jstree-closed .jstree-icon.folder:before
+{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f07b";
+
+    font-style: normal;
+    background-color:#FFF;
+}
+

@@ -1,0 +1,9 @@
+
+.plk-toolbar {
+
+    background-color: rgba(0,0,0,0.7);
+    color:#FFF;
+    border-bottom: solid 1px #FFF;
+    padding: 0 4px;
+    text-align: right;
+}
