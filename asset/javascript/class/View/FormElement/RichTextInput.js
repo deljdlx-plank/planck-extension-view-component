@@ -401,7 +401,7 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.prototype.openImag
     overlay.render(document.body);
 
 
-    var imageList = new Planck.Extension.Content.Module.Image.View.Component.ImageList();
+    var imageList = new Planck.Extension.Content.Module.Image.View.Component.Gallery();
     imageList.on('thumbnailClick', function (thumbnail) {
 
         var imageInstance = thumbnail.getDataLayer().get('image');
