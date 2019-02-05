@@ -12,7 +12,7 @@ class CodeEdition extends RichBlot
         }
 
         $(node).append(
-            '<pre class="line-numbers" data-line="3" style="position:relative">'+
+            '<pre class="line-numbers" style="position:relative">'+
                 '<code class="language-'+values.language+' " data-attribute-name="code">'+
                     code+
                 '</code>'+

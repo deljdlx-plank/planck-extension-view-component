@@ -1,4 +1,4 @@
-Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image = function(editor)
+RichEditFeatureImage = function(editor)
 {
     this.editor = editor;
 
@@ -31,7 +31,7 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image = fu
 };
 
 
-Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image.prototype.insert = function(imageEntity, dataLayer)
+RichEditFeatureImage.prototype.insert = function(imageEntity, dataLayer)
 {
     var blot = this.editor.insertEmbedBlot('plk-blot-image-edition', {
         src: imageEntity.getValue('url'),
@@ -45,7 +45,7 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image.prot
 
 
 
-Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image.prototype.openList = function () {
+RichEditFeatureImage.prototype.openList = function () {
 
 
     var overlay = new Planck.Extension.ViewComponent.View.Component.Overlay();
@@ -58,7 +58,7 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image.prot
     imageList.on('thumbnailClick', function (thumbnail) {
         var imageInstance = thumbnail.getDataLayer().get('image');
         this.insert(imageInstance, thumbnail.getDataLayer());
-        overlay.hide();
+        overlay.destroy();
 
     }.bind(this));
 

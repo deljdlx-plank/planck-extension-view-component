@@ -16,6 +16,10 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.PreviewRenderer = 
 
 };
 
+Planck.Extension.ViewComponent.View.FormElement.RichTextInput.PreviewRenderer.prototype.getHTML = function()
+{
+    return this.editor.root.innerHTML;
+};
 
 Planck.Extension.ViewComponent.View.FormElement.RichTextInput.PreviewRenderer.prototype.initialize = function()
 {
@@ -35,24 +39,30 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.PreviewRenderer.pr
 
         for (var key in blot) {
             if (key == 'insert') {
-                if (isset(blot.insert['plk-blot-image-edition'])) {
+
+                var conversions = [
+                   ['plk-blot-image-edition', 'plk-blot-image-display'],
+                    ['plk-blot-code-edition', 'plk-blot-code-display'],
+                ];
+
+                var newBlot = false;
+
+                for(var conversionIndex=0; conversionIndex<conversions.length; conversionIndex++) {
+                    var blotFrom = conversions[conversionIndex][0];
+                    var blotTo = conversions[conversionIndex][1];
+                    newBlot = this.convertBlot(blot, blotFrom, blotTo);
+                    if(newBlot) {
+                        break;
+                    }
+                }
 
 
-                    var attributes = blot.insert['plk-blot-image-edition']
-                    //var content = blot.insert['plk-blot-image-edition'].content;
-                    //var language = blot.insert['plk-blot-image-edition'].language;
-
-                    var newBlot = {
-                        insert: {
-                            'plk-blot-image-display': attributes
-                        },
-                    };
+                if(newBlot) {
                     previewDelta.ops[i] = newBlot;
                 }
                 else {
                     previewDelta.ops[i] = blot;
-                }
-            }
+                }            }
             else {
                 previewDelta.ops[i] = blot;
             }
@@ -61,6 +71,35 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.PreviewRenderer.pr
 
     return previewDelta;
 };
+
+
+
+Planck.Extension.ViewComponent.View.FormElement.RichTextInput.PreviewRenderer.prototype.convertBlot = function(blot, blotFromName, blotToName)
+{
+    if (isset(blot.insert[blotFromName])) {
+
+        var attributes = blot.insert[blotFromName];
+
+        var insertDescriptor = {};
+        insertDescriptor[blotToName] = attributes;
+
+
+
+        var newBlot = {
+            insert: insertDescriptor,
+        };
+        return newBlot
+    }
+    return false;
+};
+
+
+
+
+
+
+
+
 
 
 

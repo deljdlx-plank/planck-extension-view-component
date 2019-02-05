@@ -1,4 +1,4 @@
-Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Code = function(editor)
+RichEditFeatureCode = function(editor)
 {
     this.editor = editor;
 
@@ -14,7 +14,7 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Code = fun
 };
 
 
-Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Code.prototype.openDialog = function()
+RichEditFeatureCode.prototype.openDialog = function()
 {
     var node = CodeEdition.create({});
     var codeBlot = new CodeEdition(node);

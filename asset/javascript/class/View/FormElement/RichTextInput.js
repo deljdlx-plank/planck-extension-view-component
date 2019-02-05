@@ -1,5 +1,14 @@
-Planck.Extension.ViewComponent.View.FormElement.RichTextInput = function (container) {
-    this.editor = null;
+Planck.Extension.ViewComponent.View.FormElement.RichTextInput = function (container, options) {
+
+    this.options = {
+        height: '300px'
+    };
+
+    this.options = $(options).extend(this.options);
+
+
+    this.editor = null
+
     this.imageDropZone = null;
 
     this.$container = $(container);
@@ -11,6 +20,15 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput = function (contai
     this.$valueElement = this.$container.find('.plk-rich-text-value-container');
     this.$valueElement.addClass('form-data');
     this.$valueElement.attr('name', this.$container.attr('data-name'));
+
+    this.$htmlValueElement = this.$container.find('.plk-rich-text-html-value-container');
+
+
+    //this.$htmlValueElement.addClass('form-data');
+    //this.$htmlValueElement.attr('name', this.$container.attr('data-name'));
+
+
+
 
     this.toolbar = new Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Toolbar(this);
 
@@ -51,7 +69,18 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.prototype.initiali
         }
     });
 
-    $(this.editor.root).css('height', '800px');
+    $(this.editor.root).css('height', '100%');
+    //this.editor.root).resizable();
+    $(this.editor.root).css('height', this.options.height);
+
+    this.$placeholder.resizable({
+        handles: "s",
+        containment: $('#phi-main-container'),
+        stop: function() {
+            $(this.editor.root).css('height', '100%');
+        }.bind(this)
+    });
+
 
     this.editor.on('text-change', function (delta, oldDelta, source) {
         this.renderPreview(delta, oldDelta, source);
@@ -62,6 +91,13 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.prototype.initiali
                 this.editor.getContents()
             )
         );
+
+
+        this.$htmlValueElement.val(
+            this.previewRenderer.getHTML()
+        );
+
+
     }.bind(this));
 
 
@@ -69,12 +105,22 @@ Planck.Extension.ViewComponent.View.FormElement.RichTextInput.prototype.initiali
     this.initializeDropZone();
 
 
-    this.imageFeature = new Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Image(this);
-    this.codeFeature = new Planck.Extension.ViewComponent.View.FormElement.RichTextInput.Feature.Code(this);
+    this.imageFeature = new RichEditFeatureImage(this);
+    this.codeFeature = new RichEditFeatureCode(this);
 
 
-    var contents = JSON.parse(this.$valueElement.val());
-    this.editor.setContents(contents);
+    if(this.$valueElement.val()) {
+        try {
+            var contents = JSON.parse(this.$valueElement.val());
+            this.editor.setContents(contents);
+        }
+        catch(exception) {
+            this.$valueElement.val('');
+        }
+
+    }
+
+
     this.renderPreview();
 
 };

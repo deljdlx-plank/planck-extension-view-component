@@ -43,9 +43,11 @@ class BlotToolbar
 
         this.$insertPButton = $('<i class="fas fa-angle-double-down button"></i>');
         this.$insertPButton.on('click', function() {
-            console.log(
-               this.container.getEditor()
-            );
+
+               var $containerElement = this.container.getElement();
+                $containerElement.before('<p></p>');
+
+
         }.bind(this));
         this.$leftDivision.append(this.$insertPButton);
 

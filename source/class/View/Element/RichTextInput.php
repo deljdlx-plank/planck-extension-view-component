@@ -35,30 +35,11 @@ class RichTextInput extends Component
         $this->addCSSFile('vendor/quill/dist/snow.css');
 
 
-        //$this->addJavascriptFile('vendor/QuillPlanck/initialize.js');
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/Container.js');
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/ContainerAttribute/ContainerAttribute.js');
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/ContainerAttribute/Float.js');
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/ContainerAttribute/Border.js');
-
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/BlotToolbar.js');
-
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/Edition/Rich.js');
-
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/Edition/Code.js');
-
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/Edition/PlanckImage.js');
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/Display/PlanckImage.js');
-        //$this->addJavascriptFile('vendor/QuillPlanck/Blot/Display/Code.js');
-        //$this->addCSSFile('vendor/QuillPlanck/blot.css');
-
-
-
+        $this->addJavascriptFile('vendor/jquery-cropper/dist/jquery-cropper.js', self::RESOURCE_PRIORITY_REQUIRE);
         $this->addCSSFile('vendor/jquery-cropper/dist/cropper.css');
-        $this->addJavascriptFile('vendor/jquery-cropper/dist/jquery-cropper.js');
 
 
-        $this->addJavascriptFile('vendor/prism/prism.js');
+        $this->addJavascriptFile('vendor/prism/prism.js', self::RESOURCE_PRIORITY_REQUIRE);
         $this->addCSSFile('vendor/prism/prism.css');
 
 
@@ -70,7 +51,15 @@ class RichTextInput extends Component
 
         $this->placeholder = new Div();
         $this->placeholder->setAttribute('class', 'plk-rich-text-placeholder');
+
+
         $this->valueContainer = new Textarea();
+        $this->valueContainer->setAttribute('class', 'plk-rich-text-value-container');
+
+        $this->htmlValueContainer = new Textarea();
+        $this->htmlValueContainer->setAttribute('class', 'plk-rich-text-html-value-container');
+        $this->dom->addChild($this->htmlValueContainer);
+
 
         $this->dom->addChild(
             $this->placeholder
@@ -116,10 +105,10 @@ class RichTextInput extends Component
         );
         */
 
-        $this->valueContainer->setAttribute('class', 'plk-rich-text-value-container');
-        $this->valueContainer->html(htmlspecialchars(
-            $this->getValue()
-        ));
+
+        $this->valueContainer->html(
+            htmlspecialchars($this->getValue())
+        );
 
         $this->dom->setAttribute('data-name', $this->getName());
 

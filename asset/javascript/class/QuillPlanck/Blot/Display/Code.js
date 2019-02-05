@@ -1,28 +1,35 @@
 class CodeDisplay extends BlockEmbed
 {
-    static create(value)
+    static create(values)
     {
 
-        console.log(value);
+        var node = super.create(values);
 
 
-        var node = super.create(value);
+        var code = '';
+        if(values.code) {
+            code = CodeEdition.escape(values.code)
+        }
 
-        node.innerHTML=
-            '<code data-language="'+value.language+'">'+value.content+'</code>';
-
+        $(node).append(
+            '<pre class="line-numbers" style="position:relative">'+
+            '<code class="language-'+values.language+' " data-attribute-name="code">'+
+            code+
+            '</code>'+
+            '</pre>'
+        );
 
         return node;
     }
 
-    updateNode()
+    static escape(unsafe)
     {
-        super.updateNode();
-        console.log(
-            $(this.domNode).find('code')
-        );
-        console.log(this.userAttributes);
-        $(this.domNode).find('code').html(this.userAttributes.content);
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 
 
