@@ -328,5 +328,3 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.getTree = fun
     //
 };
 
-console.log('entity tree loaded');
-
