@@ -2,5 +2,16 @@
 
     border: solid 1px #AAA;
     padding: 8px;
-
 }
+
+.plk-rich-text-placeholder{
+    overflow: auto;
+    /*max-height: 100%;*/
+}
+
+
+.plk-rich-text-value-container {
+    display: none;
+}
+
+

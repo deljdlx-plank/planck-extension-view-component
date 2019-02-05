@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+.plk-blot-rich {
+    outline: dashed 1px #AAA;
+    margin: 0px;
+}
+
+.plk-blot-rich .plk-blot-toolbar {
+
+    /*text-align: right;*/
+
+    padding: 1px 4px;
+    background-color:#AAA;
+    position: absolute;
+    top: 0;
+    left:0;
+    width:100%;
+    z-index: 10;
+}
+.plk-blot-rich .plk-blot-toolbar .button {
+    font-size: 1.5em;
+    cursor: pointer;
+
+    padding: 1px 4px;
+    height:100%;
+    background-color:#BBB;
+    vertical-align: middle;
+    display: inline-block;
+    border: solid 1px #555;
+    background-position: 50%;
+}
+
+.plk-blot-rich .plk-blot-toolbar .button.selected {
+    border: solid 1px #FFF;
+    color:#FFF;
+}
+
+
+
+.plk-rich-text-placeholder p:before {
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    font-weight: 900;
+    content: "\f1dd";
+    color:#BBB;
+    margin-right:4px;
+}
+
+
+
+
+
+.plk-blot-style-clear-both {
+    clear: both;
+}
+
+
+
+
+
+.plk-blot-attribute {
+    border: solid 1px #AAA;
+    margin-bottom: 4px;
+}
+
+
+
+
+
+
+.plk-blot-image-display {
+    border : solid 1px #AAA;
+    margin: 8px;
+}

@@ -4,16 +4,16 @@ Planck.Extension.ViewComponent.View.Component.Overlay = function()
     this.rendered = false;
 
     this.$element = $(
-        '<div  class="plk-overlay" style="top:0; left:0; display: none; position: absolute; width:100%; height:100%; background-color: rgba(255,255,255,0.9); z-index:2000">'+
-            '<i class="fas fa-window-close fa-2x plk-overlay-close" style="position: absolute; right: 8px; top: 8px"></i>'+
-            '<div class="plk-overlay-content" style="border: solid 1px #F00; margin: 32px; background-color:#FFF"></div>'+
+        '<div  class="plk-overlay" style="">'+
+            '<i class="fas fa-window-close fa-2x plk-overlay-close"></i>'+
+            '<div class="plk-overlay-content" style=""></div>'+
         '</div>'
     );
 
     this.$contentElement = this.$element.find('.plk-overlay-content');
     this.$closeButton =  this.$element.find('.plk-overlay-close');
     this.$closeButton.click(function() {
-        this.hide();
+        this.destroy();
     }.bind(this));
 };
 
@@ -35,6 +35,10 @@ Planck.Extension.ViewComponent.View.Component.Overlay.prototype.render = functio
 
 Planck.Extension.ViewComponent.View.Component.Overlay.prototype.show = function(content)
 {
+    if(!this.rendered) {
+        this.render(document.body);
+    }
+
     this.$contentElement.html(content);
     this.$element.show();
 };
@@ -43,4 +47,10 @@ Planck.Extension.ViewComponent.View.Component.Overlay.prototype.hide = function(
 {
     this.$element.hide();
 };
+
+Planck.Extension.ViewComponent.View.Component.Overlay.prototype.destroy = function()
+{
+    this.$element.remove();
+    delete this;
+}
 
