@@ -1,6 +1,6 @@
 $(function() {
 
-    Planck.Extension.ViewComponent.initialize(document.body);
+    //Planck.Extension.ViewComponent.initialize(document.body);
 
 
 });

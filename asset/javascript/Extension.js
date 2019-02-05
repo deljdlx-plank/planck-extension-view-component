@@ -11,6 +11,7 @@ Planck.Extension.ViewComponent.Model.Repository = {};
 
 
 
+/*
 Planck.Extension.ViewComponent.initialize = function(container)
 {
     $(container).find('.plk-component.plk-tree-input').each(function(index, element) {
@@ -29,5 +30,6 @@ Planck.Extension.ViewComponent.initialize = function(container)
         var richEdit = new Planck.Extension.ViewComponent.View.FormElement.RichTextInput(element);
         richEdit.initialize();
     });
-
 };
+
+*/
