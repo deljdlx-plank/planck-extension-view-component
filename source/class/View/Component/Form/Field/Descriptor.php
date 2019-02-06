@@ -11,8 +11,8 @@ use Phi\HTML\Element\Select;
 use Phi\HTML\Element\Textarea;
 use Planck\Exception;
 
-use Planck\Extension\ViewComponent\View\Element\TagInput;
-use Planck\Extension\ViewComponent\View\Element\TreeInput;
+use Planck\Extension\Redactor\View\Component\TagInput;
+use Planck\Extension\Redactor\View\Component\TreeInput;
 use Planck\View\Component;
 
 

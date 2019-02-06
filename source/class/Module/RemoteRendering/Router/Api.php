@@ -4,6 +4,7 @@ namespace Planck\Extension\ViewComponent\Module\RemoteRendering\Router;
 
 
 use Planck\Exception;
+use Planck\Extension\Content\Model\Entity\Article;
 use Planck\Router;
 
 class Api extends Router
@@ -34,13 +35,20 @@ class Api extends Router
                 $component->loadDataFromJSON($dataLayer);
             }
 
+
             if(!empty($data['calls'])) {
                 foreach ($data['calls'] as $callName => $descriptor) {
+
+                    if($descriptor) {
+                        $parameters = $descriptor;
+                    }
+
                     call_user_func_array(array(
                         $component, $callName
-                    ), array());
+                    ), $parameters);
                 }
             }
+
 
 
 
@@ -59,8 +67,6 @@ class Api extends Router
             foreach ($javascripts as $javascript) {
                 $javascriptToLoad[] = $javascript->getSource();
             }
-
-
 
 
             $data = array(
