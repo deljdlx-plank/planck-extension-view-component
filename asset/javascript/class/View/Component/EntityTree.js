@@ -28,15 +28,17 @@ Planck.Extension.ViewComponent.View.Component.EntityTree = function(options)
 
     this.events = {
        select: function(data) {
-           console.log(data);
+           //console.log(data);
        }.bind(this),
         ready: function(data) {
-            console.log(data);
+            //console.log(data);
         }.bind(this),
         create: function(data) {
-            console.log(data);
+            //console.log(data);
         }.bind(this),
-
+        load: function(data) {
+            //console.log(data)
+        }.bind(this)
     };
 
 };
@@ -47,6 +49,11 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.on = function
    return this;
 };
 
+
+Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.selectNodeById = function(nodeId)
+{
+    return this.getTree().jstree('select_node', nodeId);
+};
 
 
 Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.render = function(selector)
@@ -61,7 +68,13 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.render = func
     .on('ready.jstree', function(data) {
         return this.events.ready(data);
     }.bind(this))
+    .on('loaded.jstree', function(data) {
+        this.events.load(data);
+    }.bind(this))
     ;
+
+
+
 
 
     if(this.editionEnable) {
@@ -106,7 +119,7 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.getOptions = 
             },
             "check_callback": true
         },
-        "plugins": ["dnd", "search"],
+        "plugins": ["dnd", "search"/*, "checkbox"*/],
         'search': {
             'case_insensitive' : true,
             'ajax':  {

@@ -1,5 +1,6 @@
 <?php
 
+
 $content = $this->getContent();
 
 echo '<div class="plk-component plk-container '.implode(' ', $this->CSSClasses).'" data-component-name="'.$this->getComponentJavascriptName().'" style="'.$this->getStyle().'">';
