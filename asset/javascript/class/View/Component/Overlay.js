@@ -13,7 +13,7 @@ Planck.Extension.ViewComponent.View.Component.Overlay = function()
     this.$contentElement = this.$element.find('.plk-overlay-content');
     this.$closeButton =  this.$element.find('.plk-overlay-close');
     this.$closeButton.click(function() {
-        this.destroy();
+        this.hide();
     }.bind(this));
 };
 
@@ -27,10 +27,11 @@ Planck.Extension.ViewComponent.View.Component.Overlay.prototype.getContentElemen
 Planck.Extension.ViewComponent.View.Component.Overlay.prototype.render = function(container)
 {
     if(!this.rendered) {
-        this.$container =$(container);
+        this.$container = $(container);
         this.$container.append(this.$element);
         this.rendered = true;
     }
+
 };
 
 Planck.Extension.ViewComponent.View.Component.Overlay.prototype.show = function(content)
@@ -38,6 +39,8 @@ Planck.Extension.ViewComponent.View.Component.Overlay.prototype.show = function(
     if(!this.rendered) {
         this.render(document.body);
     }
+
+    console.log(this.$contentElement);
 
     this.$contentElement.html(content);
     this.$element.show();
@@ -52,5 +55,5 @@ Planck.Extension.ViewComponent.View.Component.Overlay.prototype.destroy = functi
 {
     this.$element.remove();
     delete this;
-}
+};
 
