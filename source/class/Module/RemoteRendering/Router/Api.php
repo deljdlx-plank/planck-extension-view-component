@@ -5,7 +5,7 @@ namespace Planck\Extension\ViewComponent\Module\RemoteRendering\Router;
 
 use Planck\Exception;
 use Planck\Extension\Content\Model\Entity\Article;
-use Planck\Router;
+use Planck\Routing\Router;
 
 class Api extends Router
 {
