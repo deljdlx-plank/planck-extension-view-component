@@ -32,6 +32,9 @@ class JavascriptComponent extends Component
     {
         parent::initialize();
 
+
+        $this->template = __DIR__.'/template.php';
+
         $this->dataLayer = new DataLayer();
         $this->toolbar = new Toolbar();
         return $this;
@@ -53,11 +56,6 @@ class JavascriptComponent extends Component
 
 
 
-
-    public function renderDataLayer()
-    {
-        echo $this->dataLayer->render();
-    }
 
     /**
      * @return DataLayer
@@ -126,15 +124,16 @@ class JavascriptComponent extends Component
     {
 
         $this->dom->html(
-            $this->obInclude(__DIR__.'/template.php', array_merge(
+            $this->obInclude($this->template, array_merge(
                     $this->getVariables(),
                     array(
                         //'saveArticleURL' => $saveArticleURL,
                     )
                 )
-            ));
+            )
+        );
 
-        return parent::render();
+        return $this->dom->render();
     }
 
 

@@ -5,7 +5,7 @@ $content = $this->getContent();
 
 echo '<div class="plk-component plk-container '.implode(' ', $this->CSSClasses).'" data-component-name="'.$this->getComponentJavascriptName().'" style="'.$this->getStyle().'">';
     if($this->dataLayerEnabled) {
-        echo $this->renderDataLayer();
+        echo $this->getDataLayer()->render();
     }
 
     if($this->toolbarEnabled) {
