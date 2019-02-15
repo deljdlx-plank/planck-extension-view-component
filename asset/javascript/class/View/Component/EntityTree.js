@@ -60,6 +60,7 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.render = func
 {
 
     this.selector = selector;
+
     this.tree = $(selector).jstree(this.getOptions())
     .on('select_node.jstree', function(e, data) {
         this.selectedNode = data.node;
@@ -72,6 +73,12 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.render = func
         this.events.load(data);
     }.bind(this))
     ;
+
+    this.jsTree = $(this.selector).jstree(true);
+
+
+    //console.log(this.selector);
+    //console.log($(this.selector).jstree(true));
 
 
 
@@ -96,7 +103,7 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.render = func
 Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.getValue = function()
 {
     return this.selectedNode;
-}
+};
 
 
 
@@ -194,7 +201,7 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.createNode = 
             //entityName: this.entityName
         },
         success: function (data) {
-            var tree = $(this.selector).jstree(true);
+            var tree = this.jsTree;
 
             var newNode = data;
 
@@ -287,7 +294,12 @@ Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.bindRemoveEve
 
 Planck.Extension.ViewComponent.View.Component.EntityTree.prototype.getContextMenu = function($node)
 {
-    var tree = $(this.selector).jstree(true);
+
+    var tree = this.jsTree;
+
+    console.log(tree);
+
+
     var menu =  {
         "Create": {
             "separator_before": false,
