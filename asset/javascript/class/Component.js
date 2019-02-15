@@ -142,7 +142,7 @@ Planck.Extension.ViewComponent.Component.prototype.addRemoteCallData = function(
 
 Planck.Extension.ViewComponent.Component.prototype.getRemoteCallInstance = function(componentName)
 {
-    var remoteCall = new Planck.Extension.ViewComponent.ComponentRemoteCall(componentName);
+    var remoteCall = new Planck.Extension.ViewComponent.RemoteComponentLoader(componentName);
     remoteCall.addData('dataLayer', this.getDataLayer().serialize());
 
 
@@ -161,7 +161,7 @@ Planck.Extension.ViewComponent.Component.prototype.getViewFromRemote = function(
         }
     }
 
-    remoteCall.execute(function(descriptor) {
+    remoteCall.load(function(descriptor) {
 
         var dom = $(descriptor.getHTML());
         this.setElement(dom);
