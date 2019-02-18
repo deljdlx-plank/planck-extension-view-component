@@ -17,6 +17,12 @@ Planck.Extension.ViewComponent.View.Component.Overlay = function()
     }.bind(this));
 };
 
+Planck.Extension.ViewComponent.View.Component.Overlay.prototype.getElement = function()
+{
+    return this.$element;
+};
+
+
 Planck.Extension.ViewComponent.View.Component.Overlay.prototype.getContentElement = function()
 {
     return this.$contentElement;
@@ -39,11 +45,16 @@ Planck.Extension.ViewComponent.View.Component.Overlay.prototype.show = function(
     if(!this.rendered) {
         this.render(document.body);
     }
-
-    console.log(this.$contentElement);
-
     this.$contentElement.html(content);
     this.$element.show();
+
+    var echapHandler = $(document.body).keydown(function(event) {
+        if(event.key === "Escape") {
+            this.destroy();
+            delete echapHandler;
+        }
+    }.bind(this));
+
 };
 
 Planck.Extension.ViewComponent.View.Component.Overlay.prototype.hide = function()
