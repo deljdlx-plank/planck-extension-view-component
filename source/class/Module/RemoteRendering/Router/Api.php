@@ -65,6 +65,8 @@ class Api extends Router
 
             $javascriptToLoad = [];
             $javascripts = $componentManager->getJavascripts();
+
+
             foreach ($javascripts as $javascript) {
                 $javascriptToLoad[] = $javascript->getSource();
             }

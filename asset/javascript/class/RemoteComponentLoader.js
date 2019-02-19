@@ -57,33 +57,12 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.load = function(c
                 }
             }.bind(this));
 
-            console.log(descriptor);
-
-
         }.bind(this)
     });
 
 };
 
 
-/*
-Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.execute = function(callback)
-{
-
-    Planck.ajax({
-        beforeSend: function(request) {
-            //request.setRequestHeader("trololo", 'test');
-        },
-        url: this.url,
-        method: this.method,
-        data: this.getData(),
-        success: function(response) {
-
-        }.bind(this)
-
-    })
-};
-*/
 
 
 

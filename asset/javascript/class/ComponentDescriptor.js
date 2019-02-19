@@ -39,17 +39,25 @@ Planck.Extension.ViewComponent.ComponentDescriptor.prototype.loadResources = fun
 
 
     for(var i=0; i<this.css.length; i++) {
-        var src = this.css[i];
-        $('head').append('<link rel="stylesheet" href="'+src+'"/>');
+        if(!$('head').find('link[href="'+src+'"]').length) {
+            var src = this.css[i];
+            $('head').append('<link rel="stylesheet" href="'+src+'"/>');
+        }
     }
 
     var index = 0;
 
     var load = function(data, textStatus, jqxhr)
     {
+
         var url = this.javascripts[index];
 
         index++;
+
+        if($('script[src="'+url+'"]').length) {
+            load();
+            return;
+        }
 
         if(url) {
             $.getScript(url, load).fail(function (jqxhr, settings, exception) {
