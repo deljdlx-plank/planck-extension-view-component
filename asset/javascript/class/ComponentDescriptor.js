@@ -39,8 +39,11 @@ Planck.Extension.ViewComponent.ComponentDescriptor.prototype.loadResources = fun
 
 
     for(var i=0; i<this.css.length; i++) {
+
+        var src = this.css[i];
+
         if(!$('head').find('link[href="'+src+'"]').length) {
-            var src = this.css[i];
+
             $('head').append('<link rel="stylesheet" href="'+src+'"/>');
         }
     }

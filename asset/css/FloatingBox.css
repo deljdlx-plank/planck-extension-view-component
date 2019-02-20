@@ -5,17 +5,6 @@
 }
 
 
-.plk-button {
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.plk-header-toolbar {
-    text-align: right;
-    padding: var(--padding-horzontal);
-    background-color: var(--background-light);
-}
-
 .plk-floating-box .plk-content {
     padding: var(--padding-large);
 }
