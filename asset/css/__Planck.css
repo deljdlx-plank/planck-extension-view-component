@@ -58,6 +58,8 @@
     --padding-large: 16px;
     --padding-horzontal: var(--padding-medium) var(--padding-large);
 
+    --margin-large: 16px;
+
     --padding-block-small: var(--padding-small) var(--padding-medium);
     --padding-block-large: var(--padding-large) var(--padding-medium);
 

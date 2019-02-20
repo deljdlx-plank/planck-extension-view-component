@@ -41,7 +41,7 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.load = function(c
 
     Planck.ajax({
         url: url,
-        method: 'get',
+        method: 'post',
         data: data,
         success: function(response) {
 

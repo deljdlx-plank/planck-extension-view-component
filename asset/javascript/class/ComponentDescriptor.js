@@ -58,8 +58,13 @@ Planck.Extension.ViewComponent.ComponentDescriptor.prototype.loadResources = fun
         index++;
 
         if($('script[src="'+url+'"]').length) {
-            load();
-            return;
+            if(index >= this.javascripts.length) {
+                callback(this);
+            }
+            else {
+                load();
+                return;
+            }
         }
 
         if(url) {
@@ -68,6 +73,7 @@ Planck.Extension.ViewComponent.ComponentDescriptor.prototype.loadResources = fun
             });
         }
         else {
+
             callback(this);
         }
     }.bind(this);
