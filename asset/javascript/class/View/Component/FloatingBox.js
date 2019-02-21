@@ -18,9 +18,10 @@ Planck.Extension.ViewComponent.View.Component.FloatingBox = function(target, ele
     this.$closeButton.click(function() {
         this.destroy();
     }.bind(this));
-
-
 };
+
+
+
 
 Planck.Extension.ViewComponent.View.Component.FloatingBox.prototype.getElement = function()
 {
