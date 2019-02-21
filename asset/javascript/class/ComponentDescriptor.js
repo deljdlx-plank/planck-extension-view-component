@@ -60,6 +60,7 @@ Planck.Extension.ViewComponent.ComponentDescriptor.prototype.loadResources = fun
         if($('script[src="'+url+'"]').length) {
             if(index >= this.javascripts.length) {
                 callback(this);
+                return;
             }
             else {
                 load();
