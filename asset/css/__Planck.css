@@ -83,7 +83,7 @@
     box-shadow:var(--shadowed);
 
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
 }
 *[data-behaviour~="interactive"]:hover {
     box-shadow: 1px 1px 1px;
@@ -121,10 +121,12 @@ input[data-behaviour~="interactive"] {
 }
 
 .plk-header, thead th {
+
     padding: var(--padding-block-large);
     background-color:var(--background-light);
     border-bottom: var(--border);
     font-weight: bold;
+
 }
 
 
@@ -160,12 +162,14 @@ input[readonly] {
 
 /*==================================================================================*/
 
-.plk-input-container {
+
+
+
+.plk-input-container, .plk-input-with-button-container {
     position: relative;
     height: calc(var(--line-height) * 1.5);
     line-height: calc(var(--line-height) * 1.5);
 }
-
 
 .plk-input-container input {
     position: absolute;
@@ -174,6 +178,16 @@ input[readonly] {
     height:100%;
     width: 100%;
 }
+.plk-input-with-button-container input {
+    position: absolute;
+    top:0;
+    margin:0;
+    height:100%;
+    width: 100%;
+}
+
+
+
 
 .plk-icon input
 {
@@ -187,7 +201,6 @@ input[readonly] {
     display: inline-block;
 
     width: calc(var(--line-height) *2);
-    /*var(--icon-width);*/
     height: 100%;
 
     border: var(--border);
@@ -200,6 +213,28 @@ input[readonly] {
 
     background-color: var(--background-medium);
     color: var(--background-medium-complemented);
+    font-weight: bold;
+}
+
+/*==================================================================================*/
+
+.plk-input-with-button-container input {
+    width: calc(100% - calc(var(--line-height) *2));
+    border-right: none;
+    border-radius: var(--border-rounded-left);
+}
+
+.plk-input-with-button-container button {
+    position: absolute;
+    right:0;
+    width: calc(var(--line-height) *2);
+    height:100%;
+
+    background-color: var(--background-medium);
+    color: var(--background-medium-complemented);
+    font-weight: bold;
+    border: var(--border);
+    border-left: none;
 }
 
 
