@@ -13,11 +13,32 @@ class Api extends Router
     {
 
 
+
+
+        $this->get('get-package', '`view-component/api/get-package`', function() {
+
+            $data = array();
+
+
+
+
+            if(is_file($this->getApplication()->getJavascriptFilePath().'/package.json')) {
+
+                $json = file_get_contents($this->getApplication()->getJavascriptFilePath().'/package.json');
+                $data = json_decode($json);
+                if($data) {
+                    echo json_encode($data);
+                    return;
+                }
+            }
+
+            echo json_encode(array());
+
+
+
+        })->json();
+
         $this->all('render', '`view-component/remote-rendering/render`', function() {
-
-
-
-
 
 
             $data  = $this->data();

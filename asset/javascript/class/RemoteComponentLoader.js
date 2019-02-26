@@ -10,6 +10,9 @@ Planck.Extension.ViewComponent.RemoteComponentLoader = function(componentName)
 
 };
 
+Planck.Extension.ViewComponent.RemoteComponentLoader.packageDescriptorLoaded = false;
+Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets = {};
+
 
 Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.addData = function(key, value)
 {
@@ -26,6 +29,43 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.addMethodCall = f
 
 
 Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.load = function(callback)
+{
+
+    if(!Planck.Extension.ViewComponent.RemoteComponentLoader.packageDescriptorLoaded) {
+        this.loadPackageDescriptor(function(callback) {
+            this.loadComponent(callback);
+        }.bind(this));
+    }
+    else {
+        this.loadComponent(callback);
+    }
+};
+
+Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.loadPackageDescriptor = function(callback)
+{
+
+    var url = '?/@extension/planck-extension-view_component/RemoteRendering/api[get-package]';
+    var data = {
+    };
+    Planck.ajax({
+        url: url,
+        method: 'get',
+        data: data,
+        success: function(response) {
+            Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets = response;
+            Planck.Extension.ViewComponent.RemoteComponentLoader.packageDescriptorLoaded = true;
+
+
+            this.loadComponent(callback());
+        }.bind(this)
+    });
+
+
+};
+
+
+
+Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.loadComponent = function(callback)
 {
 
     var url = this.serviceURL;
@@ -59,12 +99,7 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.load = function(c
 
         }.bind(this)
     });
-
 };
-
-
-
-
 
 
 
