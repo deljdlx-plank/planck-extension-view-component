@@ -13,6 +13,12 @@ Planck.Extension.ViewComponent.RemoteComponentLoader = function(componentName)
 Planck.Extension.ViewComponent.RemoteComponentLoader.packageDescriptorLoaded = false;
 Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets = {};
 
+Planck.Extension.ViewComponent.RemoteComponentLoader.setLoadedAssets = function(assets)
+{
+    Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets = assets;
+};
+
+
 
 Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.addData = function(key, value)
 {
@@ -32,7 +38,7 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.load = function(c
 {
 
     if(!Planck.Extension.ViewComponent.RemoteComponentLoader.packageDescriptorLoaded) {
-        this.loadPackageDescriptor(function(callback) {
+        this.loadPackageDescriptor(function() {
             this.loadComponent(callback);
         }.bind(this));
     }
@@ -55,8 +61,7 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.loadPackageDescri
             Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets = response;
             Planck.Extension.ViewComponent.RemoteComponentLoader.packageDescriptorLoaded = true;
 
-
-            this.loadComponent(callback());
+            this.loadComponent(callback);
         }.bind(this)
     });
 
@@ -89,7 +94,27 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.loadComponent = f
 
             descriptor.setHTML(response.html);
             descriptor.setCSS(response.css);
-            descriptor.setJavascripts(response.javascripts);
+
+
+            var javascriptToLoad = [];
+
+            for(var i = 0 ; i<response.javascripts.length; i++) {
+
+
+                var javascript = response.javascripts[i];
+
+                if(isset(Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets.javascripts)) {
+                    if(!isset(Planck.Extension.ViewComponent.RemoteComponentLoader.loadedAssets.javascripts[javascript])) {
+                        javascriptToLoad.push(javascript);
+                    }
+                }
+                else {
+                    javascriptToLoad.push(javascript);
+                }
+
+
+            }
+            descriptor.setJavascripts(javascriptToLoad);
 
             descriptor.loadResources(function() {
                 if(callback) {
@@ -100,6 +125,7 @@ Planck.Extension.ViewComponent.RemoteComponentLoader.prototype.loadComponent = f
         }.bind(this)
     });
 };
+
 
 
 

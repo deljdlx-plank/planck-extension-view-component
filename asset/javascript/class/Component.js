@@ -153,6 +153,8 @@ Planck.Extension.ViewComponent.Component.prototype.getRemoteCallInstance = funct
 Planck.Extension.ViewComponent.Component.prototype.getViewFromRemote = function(componentName, data, callback)
 {
 
+
+
     var remoteCall = this.getRemoteCallInstance(componentName);
     if(data) {
         for(var key in data) {
